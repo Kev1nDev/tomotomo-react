@@ -5,15 +5,28 @@ import './Hero.css';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    // Detectar si es móvil para optimizar animaciones
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
     };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    // Solo agregar mousemove en desktop
+    if (!isMobile) {
+      const handleMouseMove = (e) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      };
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [isMobile]);
 
   // Removed GSAP animation - using Framer Motion instead
 
@@ -35,7 +48,7 @@ const Hero = () => {
     <section id="home" className="hero">
       <div className="hero-background">
         <div className="hero-particles">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(isMobile ? 8 : 20)].map((_, i) => (
             <motion.div
               key={i}
               className="particle"
@@ -43,11 +56,11 @@ const Hero = () => {
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
-              animate={{
+              animate={isMobile ? {} : {
                 y: [0, -20, 0],
                 opacity: [0.3, 1, 0.3],
               }}
-              transition={{
+              transition={isMobile ? {} : {
                 duration: 3 + Math.random() * 2,
                 repeat: Infinity,
                 delay: Math.random() * 2,
@@ -152,16 +165,16 @@ const Hero = () => {
           <div className="floating-elements">
             <motion.div 
               className="floating-star star-1"
-              animate={{
+              animate={isMobile ? {} : {
                 y: [0, -20, 0],
                 rotate: [0, 180, 360],
               }}
-              transition={{
+              transition={isMobile ? {} : {
                 duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              style={{
+              style={isMobile ? {} : {
                 x: mousePosition.x * 0.02,
                 y: mousePosition.y * 0.02,
               }}
@@ -170,17 +183,17 @@ const Hero = () => {
             </motion.div>
             <motion.div 
               className="floating-star star-2"
-              animate={{
+              animate={isMobile ? {} : {
                 y: [0, -15, 0],
                 rotate: [0, -180, -360],
               }}
-              transition={{
+              transition={isMobile ? {} : {
                 duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 1
               }}
-              style={{
+              style={isMobile ? {} : {
                 x: mousePosition.x * -0.01,
                 y: mousePosition.y * -0.01,
               }}
@@ -189,17 +202,17 @@ const Hero = () => {
             </motion.div>
             <motion.div 
               className="floating-star star-3"
-              animate={{
+              animate={isMobile ? {} : {
                 y: [0, -25, 0],
                 rotate: [0, 90, 180, 270, 360],
               }}
-              transition={{
+              transition={isMobile ? {} : {
                 duration: 5,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 2
               }}
-              style={{
+              style={isMobile ? {} : {
                 x: mousePosition.x * 0.015,
                 y: mousePosition.y * 0.015,
               }}

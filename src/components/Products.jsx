@@ -7,7 +7,17 @@ import './Products.css';
 const Products = () => {
   const [activeFilter, setActiveFilter] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
   const { addToCart } = useCart();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const products = [
     {
@@ -155,11 +165,11 @@ const Products = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ 
-                  duration: 0.4, 
-                  delay: index * 0.05,
+                  duration: isMobile ? 0.2 : 0.4, 
+                  delay: isMobile ? 0 : index * 0.05,
                   ease: "easeOut"
                 }}
-                whileHover={{ 
+                whileHover={isMobile ? {} : { 
                   y: -8,
                   transition: { duration: 0.2 }
                 }}
