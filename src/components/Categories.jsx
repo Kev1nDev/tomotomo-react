@@ -98,16 +98,16 @@ const Categories = () => {
               </motion.div>
               
               <motion.h3
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
+                initial={{ opacity: 1 }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 {category.title}
               </motion.h3>
               
               <motion.p
-                initial={{ opacity: 0.8 }}
-                whileHover={{ opacity: 1 }}
+                initial={{ opacity: 1 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
                 {category.description}

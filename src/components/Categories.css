@@ -57,7 +57,7 @@
 
 .category-card p {
   color: var(--light-gray);
-  opacity: 0.8;
+  opacity: 1;
   font-size: 1rem;
   line-height: 1.5;
 }
