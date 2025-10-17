@@ -93,9 +93,7 @@
 }
 
 .feature-card:hover .feature-overlay,
-.feature-card:focus-within .feature-overlay,
-.feature-card:hover h3,
-.feature-card:hover p {
+.feature-card:focus-within .feature-overlay {
   opacity: 1;
 }
 
