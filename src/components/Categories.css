@@ -1,0 +1,111 @@
+/* Categories Section */
+.categories {
+  padding: 80px 0;
+  background: var(--darker-charcoal);
+  width: 100%;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.category-card {
+  background: var(--dark-charcoal);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(223, 1, 57, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.category-card:hover::before {
+  left: 100%;
+}
+
+.category-card:hover {
+  border-color: var(--vibrant-red);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-icon {
+  margin-bottom: var(--spacing-md);
+  transition: all 0.3s ease;
+}
+
+.category-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--light-gray);
+  font-weight: 600;
+}
+
+.category-card p {
+  color: var(--light-gray);
+  opacity: 0.8;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(223, 1, 57, 0.1) 0%, 
+    rgba(226, 226, 226, 0.1) 50%, 
+    rgba(40, 36, 42, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .categories {
+    padding: 60px 0;
+  }
+  
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .category-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .category-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .category-card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .category-card {
+    padding: var(--spacing-md);
+  }
+}

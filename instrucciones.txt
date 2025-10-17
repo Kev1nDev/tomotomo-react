@@ -1,0 +1,112 @@
+===============================================
+    TOMOTOMO - E-COMMERCE DE MANGA Y CÓMICS
+===============================================
+
+INSTRUCCIONES PARA EJECUTAR EL PROYECTO
+===============================================
+
+DESCRIPCIÓN DEL PROYECTO:
+- Landing page moderna para e-commerce de manga y cómics
+- Desarrollado con React + Vite
+- Diseño anime/manga con paleta de colores personalizada
+- Funcionalidades: carrito de compras, filtros, búsqueda, animaciones
+
+PASOS PARA EJECUTAR EL PROYECTO:
+===============================================
+
+1. NAVEGAR AL DIRECTORIO DEL PROYECTO:
+   cd /home/kevin/Documentos/Bsco/tomotomo-react
+
+2. INSTALAR LAS DEPENDENCIAS:
+   npm install
+
+3. EJECUTAR EL SERVIDOR DE DESARROLLO:
+   npm run dev
+
+4. ABRIR EN EL NAVEGADOR:
+   http://localhost:5173
+
+DEPENDENCIAS INSTALADAS:
+===============================================
+- React 18 (Framework principal)
+- Vite (Build tool y servidor de desarrollo)
+- React Router DOM (Navegación)
+- Framer Motion (Animaciones avanzadas)
+- Lucide React (Iconografía moderna)
+
+CARACTERÍSTICAS DEL PROYECTO:
+===============================================
+- Diseño responsive (móvil, tablet, desktop)
+- Carrito de compras funcional
+- Filtros de productos por categoría
+- Búsqueda en tiempo real
+- Animaciones fluidas con Framer Motion
+- Paleta de colores anime/manga
+- Componentes modulares reutilizables
+- Gestión de estado con Context API
+
+PALETA DE COLORES:
+===============================================
+- Charcoal Oscuro: #1e1e27
+- Rojo Vibrante: #df0139
+- Gris Claro: #e2e2e2
+- Charcoal Más Oscuro: #28242a
+
+SECCIONES INCLUIDAS:
+===============================================
+- Header con navegación y carrito
+- Hero section con animaciones
+- Categorías populares
+- Productos destacados con filtros
+- Características de la tienda
+- Footer con información de contacto
+
+COMANDOS ÚTILES:
+===============================================
+npm run dev          # Ejecutar en modo desarrollo
+npm run build        # Construir para producción
+npm run preview      # Previsualizar build de producción
+npm run lint         # Ejecutar linter (si está configurado)
+
+ESTRUCTURA DEL PROYECTO:
+===============================================
+src/
+├── components/          # Componentes React
+│   ├── Header.jsx       # Navegación principal
+│   ├── Hero.jsx         # Sección hero
+│   ├── Categories.jsx   # Categorías
+│   ├── Products.jsx     # Productos
+│   ├── Features.jsx    # Características
+│   ├── Footer.jsx      # Pie de página
+│   └── CartModal.jsx   # Modal del carrito
+├── context/            # Context API
+│   └── CartContext.jsx # Estado del carrito
+├── App.jsx            # Componente principal
+├── App.css           # Estilos globales
+└── main.jsx          # Punto de entrada
+
+ELEMENTOS ANIME/MANGA:
+===============================================
+- Efectos de partículas flotantes
+- Animaciones de hover dinámicas
+- Gradientes y efectos de brillo
+- Iconografía temática
+- Transiciones suaves
+- Efectos de scroll
+
+FUNCIONALIDADES E-COMMERCE:
+===============================================
+- Agregar productos al carrito
+- Filtros por categoría (Manga, Cómics, Novelas)
+- Búsqueda de productos
+- Vista rápida de productos
+- Sistema de notificaciones
+- Carrito persistente
+
+SOPORTE:
+===============================================
+Si tienes problemas:
+1. Verifica que Node.js esté instalado (versión 16+)
+2. Asegúrate de estar en el directorio correcto
+3. Ejecuta 'npm install' si hay errores de dependencias
+4. Verifica que el puerto 5173 esté disponible
