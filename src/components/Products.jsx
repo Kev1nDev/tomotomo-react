@@ -21,7 +21,7 @@ const Products = () => {
       category: 'Manga',
       badge: 'Nuevo',
       icon: <BookOpen size={48} />,
-      image: 'https://images.unsplash.com/photo-1556909211-36987daf7b4e?q=80&w=800&auto=format&fit=crop'
+      image: '/images/atack-on-titanvol1.jpg'
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ const Products = () => {
       category: 'Manga',
       badge: 'Popular',
       icon: <BookOpen size={48} />,
-      image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?q=80&w=800&auto=format&fit=crop'
+      image: '/images/Volumen_100.webp'
     },
     {
       id: 3,
@@ -42,7 +42,7 @@ const Products = () => {
       rating: 4.5,
       category: 'Cómics',
       icon: <Shield size={48} />,
-      image: 'https://images.unsplash.com/photo-1623242891632-d24d9027199f?q=80&w=800&auto=format&fit=crop'
+      image: '/images/spidermannowayhome.jpg'
     },
     {
       id: 4,
@@ -54,7 +54,7 @@ const Products = () => {
       category: 'Manga',
       badge: 'Oferta',
       icon: <Sword size={48} />,
-      image: 'https://images.unsplash.com/photo-1581539250442-9f5b3063e3c4?q=80&w=800&auto=format&fit=crop'
+      image: '/images/damon-slayer.webp'
     },
     {
       id: 5,
@@ -64,7 +64,7 @@ const Products = () => {
       rating: 4.7,
       category: 'Manga',
       icon: <Zap size={48} />,
-      image: 'https://images.unsplash.com/photo-1622460931844-2b1e26dfec66?q=80&w=800&auto=format&fit=crop'
+      image: '/images/miheroacademivol1.jpeg'
     },
     {
       id: 6,
@@ -74,7 +74,7 @@ const Products = () => {
       rating: 4.6,
       category: 'Cómics',
       icon: <Shield size={48} />,
-      image: 'https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?q=80&w=800&auto=format&fit=crop'
+      image: '/images/batmandarknitgth.jpg'
     }
   ];
 
