@@ -43,12 +43,13 @@ const Header = () => {
     >
       <nav className="nav">
         <div className="nav-brand">
-          <motion.div
+          <motion.h1 
+            className="logo"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Logo size={120} className="logo-medium" />
-          </motion.div>
+            TOMO<span className="logo-accent">TOMO</span>
+          </motion.h1>
           <p className="tagline">Manga & Cómics</p>
         </div>
 

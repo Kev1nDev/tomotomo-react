@@ -100,34 +100,24 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .features {
-    padding: 40px 0;
+    padding: 60px 0;
   }
   
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
   }
   
   .feature-card {
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
   }
   
   .feature-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   
   .feature-card p {
-    font-size: 0.8rem;
-  }
-  
-  /* Desactivar efectos hover en móvil */
-  .feature-card:hover {
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .feature-card:hover .feature-overlay {
-    opacity: 0;
+    font-size: 0.9rem;
   }
 }
 

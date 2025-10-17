@@ -258,17 +258,4 @@
   .floating-star {
     font-size: 1.5rem;
   }
-  
-  /* Optimizaciones adicionales para móvil */
-  .hero-particles {
-    display: none;
-  }
-  
-  .floating-elements {
-    display: none;
-  }
-  
-  .manga-book:hover {
-    transform: none !important;
-  }
 }

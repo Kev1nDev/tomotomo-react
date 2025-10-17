@@ -208,9 +208,8 @@
 }
 
 @media (max-width: 480px) {
-  .nav-brand .logo-container {
-    max-width: 60px;
-    max-height: 36px;
+  .logo {
+    font-size: 1.4rem;
   }
   
   .tagline {

@@ -79,34 +79,24 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .categories {
-    padding: 40px 0;
+    padding: 60px 0;
   }
   
   .categories-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--spacing-sm);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
   }
   
   .category-card {
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
   }
   
   .category-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   
   .category-card p {
-    font-size: 0.8rem;
-  }
-  
-  /* Desactivar efectos hover en móvil */
-  .category-card:hover {
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .category-card:hover .category-overlay {
-    opacity: 0;
+    font-size: 0.9rem;
   }
 }
 
