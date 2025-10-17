@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Eye, ShoppingCart, Search, BookOpen, Sword, Shield, Zap } from 'lucide-react';
-import gsap from 'gsap';
 import { useCart } from '../context/CartContext';
 import './Products.css';
 
@@ -91,20 +90,7 @@ const Products = () => {
     addToCart(product);
   };
 
-  // GSAP: animate product cards on mount and when filter/search changes
-  const gridRef = useRef(null);
-
-  useEffect(() => {
-    if (!gridRef.current) return;
-    const cards = gridRef.current.querySelectorAll('.product-card');
-    gsap.from(cards, {
-      opacity: 0,
-      y: 24,
-      duration: 0.35,
-      stagger: 0.06,
-      ease: 'power2.out'
-    });
-  }, [activeFilter, searchTerm]);
+  // Removed GSAP animation to avoid conflicts with Framer Motion
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -160,7 +146,6 @@ const Products = () => {
         <motion.div 
           className="products-grid"
           layout
-          ref={gridRef}
         >
           <AnimatePresence>
             {filteredProducts.map((product, index) => (
@@ -168,13 +153,17 @@ const Products = () => {
                 key={product.id}
                 className="product-card"
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.05,
+                  ease: "easeOut"
+                }}
                 whileHover={{ 
-                  y: -10,
-                  transition: { duration: 0.3 }
+                  y: -8,
+                  transition: { duration: 0.2 }
                 }}
               >
                 <div className="product-image">
