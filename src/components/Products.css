@@ -109,6 +109,7 @@
   opacity: 0.8;
   filter: saturate(0.95) contrast(1.05);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1;
 }
 
 .product-icon {
@@ -141,6 +142,8 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .product-card:hover .product-overlay {
