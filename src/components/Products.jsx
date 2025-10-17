@@ -21,7 +21,7 @@ const Products = () => {
       category: 'Manga',
       badge: 'Nuevo',
       icon: <BookOpen size={48} />,
-      image: '/images/atack-on-titanvol1.jpg'
+      image: '/tomotomo-react/images/atack-on-titanvol1.jpg'
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ const Products = () => {
       category: 'Manga',
       badge: 'Popular',
       icon: <BookOpen size={48} />,
-      image: '/images/Volumen_100.webp'
+      image: '/tomotomo-react/images/Volumen_100.webp'
     },
     {
       id: 3,
@@ -42,7 +42,7 @@ const Products = () => {
       rating: 4.5,
       category: 'Cómics',
       icon: <Shield size={48} />,
-      image: '/images/spidermannowayhome.jpg'
+      image: '/tomotomo-react/images/spidermannowayhome.jpg'
     },
     {
       id: 4,
@@ -54,7 +54,7 @@ const Products = () => {
       category: 'Manga',
       badge: 'Oferta',
       icon: <Sword size={48} />,
-      image: '/images/damon-slayer.webp'
+      image: '/tomotomo-react/images/damon-slayer.webp'
     },
     {
       id: 5,
@@ -64,7 +64,7 @@ const Products = () => {
       rating: 4.7,
       category: 'Manga',
       icon: <Zap size={48} />,
-      image: '/images/miheroacademivol1.jpeg'
+      image: '/tomotomo-react/images/miheroacademivol1.jpeg'
     },
     {
       id: 6,
@@ -74,7 +74,7 @@ const Products = () => {
       rating: 4.6,
       category: 'Cómics',
       icon: <Shield size={48} />,
-      image: '/images/batmandarknitgth.jpg'
+      image: '/tomotomo-react/images/batmandarknitgth.jpg'
     }
   ];
 
