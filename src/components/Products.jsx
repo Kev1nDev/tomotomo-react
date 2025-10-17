@@ -20,7 +20,8 @@ const Products = () => {
       rating: 4.9,
       category: 'Manga',
       badge: 'Nuevo',
-      icon: <BookOpen size={48} />
+      icon: <BookOpen size={48} />,
+      image: 'https://images.unsplash.com/photo-1556909211-36987daf7b4e?q=80&w=800&auto=format&fit=crop'
     },
     {
       id: 2,
@@ -30,7 +31,8 @@ const Products = () => {
       rating: 4.8,
       category: 'Manga',
       badge: 'Popular',
-      icon: <BookOpen size={48} />
+      icon: <BookOpen size={48} />,
+      image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?q=80&w=800&auto=format&fit=crop'
     },
     {
       id: 3,
@@ -39,7 +41,8 @@ const Products = () => {
       price: '$8.99',
       rating: 4.5,
       category: 'Cómics',
-      icon: <Shield size={48} />
+      icon: <Shield size={48} />,
+      image: 'https://images.unsplash.com/photo-1623242891632-d24d9027199f?q=80&w=800&auto=format&fit=crop'
     },
     {
       id: 4,
@@ -50,7 +53,8 @@ const Products = () => {
       rating: 4.9,
       category: 'Manga',
       badge: 'Oferta',
-      icon: <Sword size={48} />
+      icon: <Sword size={48} />,
+      image: 'https://images.unsplash.com/photo-1581539250442-9f5b3063e3c4?q=80&w=800&auto=format&fit=crop'
     },
     {
       id: 5,
@@ -59,7 +63,8 @@ const Products = () => {
       price: '$13.99',
       rating: 4.7,
       category: 'Manga',
-      icon: <Zap size={48} />
+      icon: <Zap size={48} />,
+      image: 'https://images.unsplash.com/photo-1622460931844-2b1e26dfec66?q=80&w=800&auto=format&fit=crop'
     },
     {
       id: 6,
@@ -68,7 +73,8 @@ const Products = () => {
       price: '$9.99',
       rating: 4.6,
       category: 'Cómics',
-      icon: <Shield size={48} />
+      icon: <Shield size={48} />,
+      image: 'https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?q=80&w=800&auto=format&fit=crop'
     }
   ];
 
@@ -172,6 +178,9 @@ const Products = () => {
                 }}
               >
                 <div className="product-image">
+                  {product.image ? (
+                    <img src={product.image} alt={product.title} className="product-img" loading="lazy" />
+                  ) : null}
                   {product.badge && (
                     <motion.div 
                       className="product-badge"

@@ -39,7 +39,8 @@
   left: 100%;
 }
 
-.feature-card:hover {
+.feature-card:hover,
+.feature-card:focus-within {
   border-color: var(--vibrant-red);
   box-shadow: var(--shadow-lg);
 }
@@ -77,6 +78,8 @@
     rgba(40, 36, 42, 0.05) 100%
   );
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .feature-glow {
@@ -87,6 +90,13 @@
   bottom: 0;
   border-radius: var(--radius-lg);
   pointer-events: none;
+}
+
+.feature-card:hover .feature-overlay,
+.feature-card:focus-within .feature-overlay,
+.feature-card:hover h3,
+.feature-card:hover p {
+  opacity: 1;
 }
 
 /* Responsive Design */

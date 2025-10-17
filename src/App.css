@@ -13,6 +13,7 @@
   --darker-charcoal: #28242a;
   --white: #ffffff;
   --black: #000000;
+  --header-height: 72px;
   
   /* Typography - Configuración tipográfica para legibilidad y jerarquía visual */
   --font-primary: 'Roboto', sans-serif;
@@ -44,6 +45,7 @@ body {
   color: var(--light-gray);
   background: linear-gradient(135deg, var(--dark-charcoal) 0%, var(--darker-charcoal) 100%);
   min-height: 100vh;
+  padding-top: var(--header-height);
 }
 
 .App {
