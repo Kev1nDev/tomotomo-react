@@ -17,16 +17,19 @@ const Hero = () => {
     window.addEventListener('resize', checkMobile);
     
     // Solo agregar mousemove en desktop
-    if (!isMobile) {
-      const handleMouseMove = (e) => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-      };
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    if (window.innerWidth > 768) {
       window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
     }
     
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [isMobile]);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   // Removed GSAP animation - using Framer Motion instead
 
