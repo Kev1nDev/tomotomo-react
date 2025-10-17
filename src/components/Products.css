@@ -144,10 +144,12 @@
   transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: 2;
+  visibility: hidden;
 }
 
 .product-card:hover .product-overlay {
   opacity: 1;
+  visibility: visible;
 }
 
 .product-card:hover .product-img {
