@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, BookOpen, Sparkles } from 'lucide-react';
-import gsap from 'gsap';
 import './Hero.css';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef(null);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -17,18 +15,7 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // GSAP intro animation
-  useEffect(() => {
-    if (!heroRef.current) return;
-    const tl = gsap.timeline();
-    tl.from(heroRef.current.querySelectorAll('.hero-title, .hero-subtitle, .hero-buttons'), {
-      opacity: 0,
-      y: 24,
-      duration: 0.5,
-      stagger: 0.15,
-      ease: 'power2.out'
-    });
-  }, []);
+  // Removed GSAP animation - using Framer Motion instead
 
   const scrollToProducts = () => {
     const productsSection = document.querySelector('#products');
@@ -45,7 +32,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="hero" ref={heroRef}>
+    <section id="home" className="hero">
       <div className="hero-background">
         <div className="hero-particles">
           {[...Array(20)].map((_, i) => (

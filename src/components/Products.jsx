@@ -90,8 +90,6 @@ const Products = () => {
     addToCart(product);
   };
 
-  // Removed GSAP animation to avoid conflicts with Framer Motion
-
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
