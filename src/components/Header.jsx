@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, ShoppingCart, Menu, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import Logo from './Logo';
 import './Header.css';
 
 const Header = () => {
@@ -43,13 +44,12 @@ const Header = () => {
     >
       <nav className="nav">
         <div className="nav-brand">
-          <motion.h1 
-            className="logo"
+          <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            TOMO<span className="logo-accent">TOMO</span>
-          </motion.h1>
+            <Logo size={120} className="logo-medium" />
+          </motion.div>
           <p className="tagline">Manga & Cómics</p>
         </div>
 
