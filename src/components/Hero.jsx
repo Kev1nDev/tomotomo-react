@@ -5,30 +5,14 @@ import './Hero.css';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Detectar si es móvil para optimizar animaciones
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    // Solo agregar mousemove en desktop
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    
-    if (window.innerWidth > 768) {
-      window.addEventListener('mousemove', handleMouseMove);
-    }
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   // Removed GSAP animation - using Framer Motion instead
@@ -51,7 +35,7 @@ const Hero = () => {
     <section id="home" className="hero">
       <div className="hero-background">
         <div className="hero-particles">
-          {[...Array(isMobile ? 8 : 20)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               className="particle"
@@ -59,11 +43,11 @@ const Hero = () => {
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
-              animate={isMobile ? {} : {
+              animate={{
                 y: [0, -20, 0],
                 opacity: [0.3, 1, 0.3],
               }}
-              transition={isMobile ? {} : {
+              transition={{
                 duration: 3 + Math.random() * 2,
                 repeat: Infinity,
                 delay: Math.random() * 2,
@@ -168,16 +152,16 @@ const Hero = () => {
           <div className="floating-elements">
             <motion.div 
               className="floating-star star-1"
-              animate={isMobile ? {} : {
+              animate={{
                 y: [0, -20, 0],
                 rotate: [0, 180, 360],
               }}
-              transition={isMobile ? {} : {
+              transition={{
                 duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              style={isMobile ? {} : {
+              style={{
                 x: mousePosition.x * 0.02,
                 y: mousePosition.y * 0.02,
               }}
@@ -186,17 +170,17 @@ const Hero = () => {
             </motion.div>
             <motion.div 
               className="floating-star star-2"
-              animate={isMobile ? {} : {
+              animate={{
                 y: [0, -15, 0],
                 rotate: [0, -180, -360],
               }}
-              transition={isMobile ? {} : {
+              transition={{
                 duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 1
               }}
-              style={isMobile ? {} : {
+              style={{
                 x: mousePosition.x * -0.01,
                 y: mousePosition.y * -0.01,
               }}
@@ -205,17 +189,17 @@ const Hero = () => {
             </motion.div>
             <motion.div 
               className="floating-star star-3"
-              animate={isMobile ? {} : {
+              animate={{
                 y: [0, -25, 0],
                 rotate: [0, 90, 180, 270, 360],
               }}
-              transition={isMobile ? {} : {
+              transition={{
                 duration: 5,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 2
               }}
-              style={isMobile ? {} : {
+              style={{
                 x: mousePosition.x * 0.015,
                 y: mousePosition.y * 0.015,
               }}
