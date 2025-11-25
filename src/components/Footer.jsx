@@ -35,21 +35,21 @@ const Footer = () => {
   return (
     <footer id="contact" className="footer">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="footer-content"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <motion.div 
+          <motion.div
             className="footer-section"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <motion.h3 
+            <motion.h3
               className="footer-title"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -65,7 +65,7 @@ const Footer = () => {
                   key={social.label}
                   href={social.href}
                   className="social-link"
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.2,
                     rotate: 360,
                     transition: { duration: 0.3 }
@@ -82,7 +82,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="footer-section"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -99,7 +99,7 @@ const Footer = () => {
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <a 
+                  <a
                     href={link.href}
                     onClick={(e) => {
                       e.preventDefault();
@@ -113,7 +113,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="footer-section"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -136,7 +136,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="footer-section"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -144,7 +144,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h4>Contacto</h4>
-            <motion.div 
+            <motion.div
               className="contact-info"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -167,14 +167,14 @@ const Footer = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="footer-bottom"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <p>&copy; 2024 Tomotomo. Todos los derechos reservados.</p>
+          <p>&copy; 2025 Tomotomo. Todos los derechos reservados.</p>
         </motion.div>
       </div>
     </footer>
