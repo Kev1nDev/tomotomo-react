@@ -14,8 +14,8 @@ const Products = () => {
       id: 1,
       title: 'Attack on Titan Vol. 1',
       author: 'Hajime Isayama',
-      price: '$15.99',
-      originalPrice: '$19.99',
+      price: 15.99,
+      originalPrice: 19.99,
       rating: 4.9,
       category: 'Manga',
       badge: 'Nuevo',
@@ -26,7 +26,7 @@ const Products = () => {
       id: 2,
       title: 'One Piece Vol. 100',
       author: 'Eiichiro Oda',
-      price: '$12.99',
+      price: 12.99,
       rating: 4.8,
       category: 'Manga',
       badge: 'Popular',
@@ -37,7 +37,7 @@ const Products = () => {
       id: 3,
       title: 'Spider-Man: No Way Home',
       author: 'Marvel Comics',
-      price: '$8.99',
+      price: 8.99,
       rating: 4.5,
       category: 'Cómics',
       icon: <Shield size={48} />,
@@ -47,8 +47,8 @@ const Products = () => {
       id: 4,
       title: 'Demon Slayer Vol. 1',
       author: 'Koyoharu Gotouge',
-      price: '$11.99',
-      originalPrice: '$15.99',
+      price: 11.99,
+      originalPrice: 15.99,
       rating: 4.9,
       category: 'Manga',
       badge: 'Oferta',
@@ -59,7 +59,7 @@ const Products = () => {
       id: 5,
       title: 'My Hero Academia Vol. 30',
       author: 'Kohei Horikoshi',
-      price: '$13.99',
+      price: 13.99,
       rating: 4.7,
       category: 'Manga',
       icon: <Zap size={48} />,
@@ -69,7 +69,7 @@ const Products = () => {
       id: 6,
       title: 'Batman: The Dark Knight',
       author: 'DC Comics',
-      price: '$9.99',
+      price: 9.99,
       rating: 4.6,
       category: 'Cómics',
       icon: <Shield size={48} />,
@@ -82,7 +82,7 @@ const Products = () => {
   const filteredProducts = products.filter(product => {
     const matchesFilter = activeFilter === 'Todos' || product.category === activeFilter;
     const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.author.toLowerCase().includes(searchTerm.toLowerCase());
+      product.author.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 
@@ -104,7 +104,7 @@ const Products = () => {
   return (
     <section id="products" className="products">
       <div className="container">
-        <motion.h2 
+        <motion.h2
           className="section-title"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -141,7 +141,7 @@ const Products = () => {
           </div>
         </div>
 
-        <motion.div 
+        <motion.div
           className="products-grid"
           layout
         >
@@ -154,12 +154,12 @@ const Products = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ 
-                  duration: 0.4, 
+                transition={{
+                  duration: 0.4,
                   delay: index * 0.05,
                   ease: "easeOut"
                 }}
-                whileHover={{ 
+                whileHover={{
                   y: -8,
                   transition: { duration: 0.2 }
                 }}
@@ -169,7 +169,7 @@ const Products = () => {
                     <img src={product.image} alt={product.title} className="product-img" loading="lazy" />
                   ) : null}
                   {product.badge && (
-                    <motion.div 
+                    <motion.div
                       className="product-badge"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -178,9 +178,9 @@ const Products = () => {
                       {product.badge}
                     </motion.div>
                   )}
-                  
+
                   <div className="product-overlay">
-                    <motion.button 
+                    <motion.button
                       className="quick-view"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -189,29 +189,29 @@ const Products = () => {
                       Vista Rápida
                     </motion.button>
                   </div>
-                  
+
                   <div className="product-icon">{product.icon}</div>
                 </div>
 
                 <div className="product-info">
                   <h3 className="product-title">{product.title}</h3>
                   <p className="product-author">{product.author}</p>
-                  
+
                   <div className="product-rating">
                     <div className="stars">
                       {renderStars(product.rating)}
                     </div>
                     <span className="rating-text">({product.rating})</span>
                   </div>
-                  
+
                   <div className="product-price">
-                    <span className="current-price">{product.price}</span>
+                    <span className="current-price">${product.price}</span>
                     {product.originalPrice && (
-                      <span className="original-price">{product.originalPrice}</span>
+                      <span className="original-price">${product.originalPrice}</span>
                     )}
                   </div>
-                  
-                  <motion.button 
+
+                  <motion.button
                     className="add-to-cart"
                     onClick={() => handleAddToCart(product)}
                     whileHover={{ scale: 1.02 }}
@@ -227,7 +227,7 @@ const Products = () => {
         </motion.div>
 
         {filteredProducts.length === 0 && (
-          <motion.div 
+          <motion.div
             className="no-products"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

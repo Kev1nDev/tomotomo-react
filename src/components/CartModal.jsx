@@ -4,16 +4,44 @@ import { X, Plus, Minus, Trash2, ShoppingBag, Heart, Share2, Star, Shield, Truck
 import { useCart } from '../context/CartContext';
 import './CartModal.css';
 
+const modalVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
+
+const overlayVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+  exit: { opacity: 0 }
+};
+
 const CartModal = () => {
-  const { 
-    isOpen, 
-    items, 
-    closeCart, 
-    removeFromCart, 
-    updateQuantity, 
-    clearCart, 
-    getTotalPrice, 
-    getTotalItems 
+  const {
+    isOpen,
+    items,
+    closeCart,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    getTotalItems,
+    cartTotal,
+    shippingCost,
+    taxAmount,
+    finalTotal
   } = useCart();
 
   const [savedItems, setSavedItems] = useState([]);
@@ -30,59 +58,10 @@ const CartModal = () => {
     removeFromCart(item.id);
   };
 
-  const handleMoveToCart = (item) => {
-    // Add back to cart logic here
-    setSavedItems(savedItems.filter(savedItem => savedItem.id !== item.id));
-  };
-
-  const getSubtotal = () => {
-    return items.reduce((total, item) => {
-      const price = parseFloat(item.price.replace('$', ''));
-      return total + (price * item.quantity);
-    }, 0);
-  };
-
-  const getShipping = () => {
-    return getSubtotal() > 50 ? 0 : 5.99;
-  };
-
-  const getTax = () => {
-    return getSubtotal() * 0.08; // 8% tax
-  };
-
-  const getTotal = () => {
-    return getSubtotal() + getShipping() + getTax();
-  };
-
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    },
-    exit: { 
-      opacity: 0, 
-      scale: 0.8,
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
-
-  const overlayVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-    exit: { opacity: 0 }
-  };
-
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div 
+        <motion.div
           className="cart-modal"
           variants={overlayVariants}
           initial="hidden"
@@ -90,7 +69,7 @@ const CartModal = () => {
           exit="exit"
           onClick={closeCart}
         >
-          <motion.div 
+          <motion.div
             className="modal-content"
             variants={modalVariants}
             initial="hidden"
@@ -109,7 +88,7 @@ const CartModal = () => {
                   Carrito de Compras ({getTotalItems()})
                 </motion.h3>
                 {items.length > 0 && (
-                  <motion.button 
+                  <motion.button
                     className="clear-cart-btn"
                     onClick={clearCart}
                     initial={{ opacity: 0 }}
@@ -121,7 +100,7 @@ const CartModal = () => {
                   </motion.button>
                 )}
               </div>
-              <motion.button 
+              <motion.button
                 className="close-modal"
                 onClick={closeCart}
                 whileHover={{ scale: 1.1, rotate: 90 }}
@@ -133,7 +112,7 @@ const CartModal = () => {
 
             <div className="modal-body">
               {items.length === 0 ? (
-                <motion.div 
+                <motion.div
                   className="empty-cart"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -144,14 +123,14 @@ const CartModal = () => {
                   <p>¡Explora nuestros productos!</p>
                 </motion.div>
               ) : (
-                <motion.div 
+                <motion.div
                   className="cart-items"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
                   {items.map((item, index) => (
-                    <motion.div 
+                    <motion.div
                       key={item.id}
                       className="cart-item"
                       initial={{ opacity: 0, x: -20 }}
@@ -164,7 +143,7 @@ const CartModal = () => {
                           <img src={item.image} alt={item.title} className="product-thumbnail" />
                         )}
                       </div>
-                      
+
                       <div className="item-details">
                         <div className="item-info">
                           <h4>{item.title}</h4>
@@ -178,13 +157,13 @@ const CartModal = () => {
                             <span className="rating-text">(4.8)</span>
                           </div>
                           <div className="item-price-section">
-                            <span className="item-price">{item.price}</span>
+                            <span className="item-price">${item.price}</span>
                             {item.originalPrice && (
-                              <span className="original-price">{item.originalPrice}</span>
+                              <span className="original-price">${item.originalPrice}</span>
                             )}
                           </div>
                         </div>
-                        
+
                         <div className="item-actions">
                           <div className="quantity-section">
                             <label className="quantity-label">Cantidad:</label>
@@ -209,7 +188,7 @@ const CartModal = () => {
                               </motion.button>
                             </div>
                           </div>
-                          
+
                           <div className="action-buttons">
                             <motion.button
                               className="action-btn save-btn"
@@ -220,7 +199,7 @@ const CartModal = () => {
                               <Heart size={16} />
                               Guardar
                             </motion.button>
-                            
+
                             <motion.button
                               className="action-btn share-btn"
                               whileHover={{ scale: 1.05 }}
@@ -229,7 +208,7 @@ const CartModal = () => {
                               <Share2 size={16} />
                               Compartir
                             </motion.button>
-                            
+
                             <motion.button
                               className="action-btn remove-btn"
                               onClick={() => removeFromCart(item.id)}
@@ -248,7 +227,7 @@ const CartModal = () => {
               )}
 
               {items.length > 0 && (
-                <motion.div 
+                <motion.div
                   className="cart-summary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -257,38 +236,38 @@ const CartModal = () => {
                   <div className="summary-header">
                     <h4>Resumen del Pedido</h4>
                   </div>
-                  
+
                   <div className="summary-details">
                     <div className="summary-row">
                       <span>Subtotal ({getTotalItems()} {getTotalItems() === 1 ? 'artículo' : 'artículos'}):</span>
-                      <span>${getSubtotal().toFixed(2)}</span>
+                      <span>${cartTotal.toFixed(2)}</span>
                     </div>
-                    
+
                     <div className="summary-row">
                       <span>Envío:</span>
-                      <span className={getShipping() === 0 ? 'free-shipping' : ''}>
-                        {getShipping() === 0 ? 'GRATIS' : `$${getShipping().toFixed(2)}`}
+                      <span className={shippingCost === 0 ? 'free-shipping' : ''}>
+                        {shippingCost === 0 ? 'GRATIS' : `$${shippingCost.toFixed(2)}`}
                       </span>
                     </div>
-                    
-                    {getShipping() > 0 && (
+
+                    {shippingCost > 0 && (
                       <div className="shipping-note">
                         <Truck size={16} />
-                        <span>¡Agrega ${(50 - getSubtotal()).toFixed(2)} más para envío GRATIS!</span>
+                        <span>¡Agrega ${(50 - cartTotal).toFixed(2)} más para envío GRATIS!</span>
                       </div>
                     )}
-                    
+
                     <div className="summary-row">
                       <span>Impuestos:</span>
-                      <span>${getTax().toFixed(2)}</span>
+                      <span>${taxAmount.toFixed(2)}</span>
                     </div>
-                    
+
                     <div className="summary-total">
                       <span>Total:</span>
-                      <strong>${getTotal().toFixed(2)}</strong>
+                      <strong>${finalTotal.toFixed(2)}</strong>
                     </div>
                   </div>
-                  
+
                   <div className="security-badges">
                     <div className="badge">
                       <Shield size={16} />
@@ -308,14 +287,14 @@ const CartModal = () => {
             </div>
 
             {items.length > 0 && (
-              <motion.div 
+              <motion.div
                 className="modal-footer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
                 <div className="footer-actions">
-                  <motion.button 
+                  <motion.button
                     className="btn btn-secondary continue-shopping"
                     onClick={closeCart}
                     whileHover={{ scale: 1.02 }}
@@ -323,8 +302,8 @@ const CartModal = () => {
                   >
                     Seguir Comprando
                   </motion.button>
-                  
-                  <motion.button 
+
+                  <motion.button
                     className="btn btn-primary checkout-btn"
                     onClick={handleCheckout}
                     whileHover={{ scale: 1.02 }}
@@ -332,10 +311,10 @@ const CartModal = () => {
                   >
                     <CreditCard size={20} />
                     Proceder al Pago
-                    <span className="checkout-total">${getTotal().toFixed(2)}</span>
+                    <span className="checkout-total">${finalTotal.toFixed(2)}</span>
                   </motion.button>
                 </div>
-                
+
                 <div className="footer-note">
                   <Shield size={16} />
                   <span>Tu información está protegida con encriptación SSL</span>

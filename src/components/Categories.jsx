@@ -56,7 +56,7 @@ const Categories = () => {
   return (
     <section id="categories" className="categories">
       <div className="container">
-        <motion.h2 
+        <motion.h2
           className="section-title"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,30 +65,30 @@ const Categories = () => {
         >
           Categorías Populares
         </motion.h2>
-        
-        <motion.div 
+
+        <motion.div
           className="categories-grid"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {categories.map((category, index) => (
-            <motion.div 
+          {categories.map((category) => (
+            <motion.div
               key={category.title}
               className="category-card"
               variants={itemVariants}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 y: -10,
                 transition: { duration: 0.3 }
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.div 
+              <motion.div
                 className="category-icon"
                 style={{ color: category.color }}
-                whileHover={{ 
+                whileHover={{
                   rotate: 360,
                   scale: 1.2,
                   transition: { duration: 0.6 }
@@ -96,7 +96,7 @@ const Categories = () => {
               >
                 {category.icon}
               </motion.div>
-              
+
               <motion.h3
                 initial={{ opacity: 1 }}
                 whileHover={{ scale: 1.05 }}
@@ -104,7 +104,7 @@ const Categories = () => {
               >
                 {category.title}
               </motion.h3>
-              
+
               <motion.p
                 initial={{ opacity: 1 }}
                 whileHover={{ scale: 1.02 }}
@@ -112,8 +112,8 @@ const Categories = () => {
               >
                 {category.description}
               </motion.p>
-              
-              <motion.div 
+
+              <motion.div
                 className="category-overlay"
                 initial={{ opacity: 0 }}
                 whileHover={{ opacity: 1 }}

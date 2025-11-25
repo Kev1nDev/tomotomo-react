@@ -4,7 +4,7 @@ const CartContext = createContext();
 
 const cartReducer = (state, action) => {
   switch (action.type) {
-    case 'ADD_TO_CART':
+    case 'ADD_TO_CART': {
       const existingItem = state.items.find(item => item.id === action.payload.id);
       if (existingItem) {
         return {
@@ -20,13 +20,14 @@ const cartReducer = (state, action) => {
         ...state,
         items: [...state.items, { ...action.payload, quantity: 1 }]
       };
-    
+    }
+
     case 'REMOVE_FROM_CART':
       return {
         ...state,
         items: state.items.filter(item => item.id !== action.payload)
       };
-    
+
     case 'UPDATE_QUANTITY':
       return {
         ...state,
@@ -36,25 +37,25 @@ const cartReducer = (state, action) => {
             : item
         ).filter(item => item.quantity > 0)
       };
-    
+
     case 'CLEAR_CART':
       return {
         ...state,
         items: []
       };
-    
+
     case 'TOGGLE_CART':
       return {
         ...state,
         isOpen: !state.isOpen
       };
-    
+
     case 'CLOSE_CART':
       return {
         ...state,
         isOpen: false
       };
-    
+
     default:
       return state;
   }
@@ -90,14 +91,25 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: 'CLOSE_CART' });
   };
 
-  const getTotalPrice = () => {
-    return state.items.reduce((total, item) => {
-      return total + (parseFloat(item.price.replace('$', '')) * item.quantity);
-    }, 0);
+  const getSubtotal = () => {
+    return state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
   const getTotalItems = () => {
     return state.items.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const getShipping = () => {
+    const subtotal = getSubtotal();
+    return subtotal > 50 ? 0 : 5.99;
+  };
+
+  const getTax = () => {
+    return getSubtotal() * 0.08;
+  };
+
+  const getTotal = () => {
+    return getSubtotal() + getShipping() + getTax();
   };
 
   const value = {
@@ -108,7 +120,10 @@ export const CartProvider = ({ children }) => {
     clearCart,
     toggleCart,
     closeCart,
-    getTotalPrice,
+    cartTotal: getSubtotal(),
+    shippingCost: getShipping(),
+    taxAmount: getTax(),
+    finalTotal: getTotal(),
     getTotalItems
   };
 
@@ -119,6 +134,7 @@ export const CartProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
